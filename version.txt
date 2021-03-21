@@ -1,4 +1,4 @@
-php-8.0.2-Win32-vs16-x64.zip,https://windows.php.net/download#php-8.0-ts-vs16-x64
+php-8.0.3-Win32-vs16-x64.zip,https://windows.php.net/download#php-8.0-ts-vs16-x64
 php_mailparse-3.1.1-8.0-ts-vs16-x64.zip,https://windows.php.net/downloads/pecl/releases/mailparse/3.1.1/
 composer.phar,https://getcomposer.org/download/2.0.9
 cacert.pem,https://curl.haxx.se/docs/caextract.html
