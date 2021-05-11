@@ -20,10 +20,6 @@ mkdir temp
 move /Y "temp\php_mailparse.dll" "output\ext\php_mailparse.dll"
 rmdir /Q /S temp
 
-pushd release
-set PATH=%CD%;%PATH%
-popd
-
 copy /B "vendor\cacert.pem" "output\cacert.pem"
 copy /B "vendor\composer.phar" "output\composer.phar"
 copy /B "source\installer.php.ini.php" "output\installer.php.ini.php"
