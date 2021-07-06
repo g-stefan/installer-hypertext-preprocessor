@@ -22,5 +22,5 @@ set WEB_LINK=https://windows.php.net/downloads/pecl/releases/mailparse/3.1.1/%VE
 if not exist vendor\%VENDOR% curl --insecure --location %WEB_LINK% --output vendor\%VENDOR%
 
 set VENDOR=composer.phar
-set WEB_LINK=https://getcomposer.org/download/2.0.13/composer.phar
+set WEB_LINK=https://getcomposer.org/download/2.1.3/composer.phar
 if not exist vendor\%VENDOR% curl --insecure --location %WEB_LINK% --output vendor\%VENDOR%
