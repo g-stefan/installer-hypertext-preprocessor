@@ -1,9 +1,10 @@
 ;--------------------------------
 ; Hypertext Preprocessor Installer
 ;
-; Public domain
-; http://unlicense.org/
 ; Created by Grigore Stefan <g_stefan@yahoo.com>
+; Public domain (Unlicense) <http://unlicense.org>
+; SPDX-FileCopyrightText: 2021-2023 Grigore Stefan <g_stefan@yahoo.com>
+; SPDX-License-Identifier: Unlicense
 ;
 
 !include "MUI2.nsh"
@@ -16,7 +17,7 @@ Name "Hypertext Preprocessor"
 !define HypertextPreprocessorVersion "$%PRODUCT_VERSION%"
 
 ; The file to write
-OutFile "installer\hypertext-preprocessor-${HypertextPreprocessorVersion}-installer.exe"
+OutFile "release\hypertext-preprocessor-${HypertextPreprocessorVersion}-installer.exe"
 
 Unicode True
 RequestExecutionLevel admin
