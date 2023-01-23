@@ -23,9 +23,9 @@ if (!Shell.fileExists("vendor/"+vendor)) {
 	exitIf(Shell.system(cmd));
 };
 
-var vendor = "php_mailparse-3.1.2-8.0-ts-vs16-x64.zip";
+var vendor = "php_mailparse-3.1.3-8.1-ts-vs16-x64.zip";
 if (!Shell.fileExists("vendor/"+vendor)) {
-	var webLink = "https://windows.php.net/downloads/pecl/releases/mailparse/3.1.2/"+vendor;
+	var webLink = "https://windows.php.net/downloads/pecl/releases/mailparse/3.1.3/"+vendor;
 	var cmd = "curl --insecure --location "+webLink+" --output vendor/"+vendor;
 	Console.writeLn(cmd);
 	exitIf(Shell.system(cmd));
