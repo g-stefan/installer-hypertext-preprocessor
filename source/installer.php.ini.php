@@ -15,7 +15,7 @@ $search.=";error_log = syslog\r\n\r\n";
 
 $replace="; Log errors to syslog (Event Log on Windows).\r\n";
 $replace.=";error_log = syslog\r\n";
-$replace.="error_log = \"C:\\ProgramData\\php\\error.log\"\r\n";
+$replace.="error_log = \"C:\\ProgramData\\Hypertext-Preprocessor\\error.log\"\r\n";
 $replace.="\r\n";
 
 $config=str_replace ($search, $replace, $config);
@@ -28,7 +28,7 @@ $search.=";curl.cainfo =\r\n\r\n";
 
 $replace="; A default value for the CURLOPT_CAINFO option. This is required to be an\r\n";
 $replace.="; absolute path.\r\n";
-$replace.="curl.cainfo =\"C:\\ProgramData\\php\\cacert.pem\"\r\n\r\n";
+$replace.="curl.cainfo =\"C:\\ProgramData\\Hypertext-Preprocessor\\cacert.pem\"\r\n\r\n";
 
 $config=str_replace ($search, $replace, $config);
 

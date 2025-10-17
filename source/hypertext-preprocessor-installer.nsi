@@ -157,6 +157,12 @@ Section "Hypertext Preprocessor (required)" MainSection
 	Pop $0
 	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "EstimatedSize" "$0"
 
+	; MSVC Redist
+	SetOutPath $INSTDIR
+	nsExec::Exec "vc-2022-redist.x64.exe /install /quiet /norestart"
+	Sleep 3000
+	Delete "vc-2022-redist.x64.exe"
+
 	; Configure
 	SetOutPath $INSTDIR
 
@@ -173,6 +179,7 @@ Section "Hypertext Preprocessor (required)" MainSection
 
 	SetOutPath "$PathProgramData\Hypertext-Preprocessor"
 	File "source\hypertext-preprocessor-error.php"
+	File "output\cacert.pem"
 	SetOutPath "$PathProgramData\HTTPD\conf\conf"
 	File "source\hypertext-preprocessor.conf"
 
