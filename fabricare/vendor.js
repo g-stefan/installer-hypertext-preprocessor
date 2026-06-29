@@ -23,9 +23,17 @@ if (!Shell.fileExists("vendor/"+vendor)) {
 	exitIf(Shell.system(cmd));
 };
 
-var vendor = "php_mailparse-3.1.9-8.4-ts-vs17-x64.zip";
+var vendor = "php_imap-1.0.3-8.5-ts-vs17-x64.zip";
 if (!Shell.fileExists("vendor/"+vendor)) {
-	var webLink = "https://downloads.php.net/~windows/pecl/releases/mailparse/3.1.9/"+vendor;
+	var webLink = "https://downloads.php.net/~windows/pecl/releases/imap/1.0.3/"+vendor;
+	var cmd = "curl --insecure --location "+webLink+" --output vendor/"+vendor;
+	Console.writeLn(cmd);
+	exitIf(Shell.system(cmd));
+};
+
+var vendor = "php_mailparse-3.2.0-8.5-ts-vs17-x64.zip";
+if (!Shell.fileExists("vendor/"+vendor)) {
+	var webLink = "https://downloads.php.net/~windows/pecl/releases/mailparse/3.2.0/"+vendor;
 	var cmd = "curl --insecure --location "+webLink+" --output vendor/"+vendor;
 	Console.writeLn(cmd);
 	exitIf(Shell.system(cmd));
@@ -33,7 +41,7 @@ if (!Shell.fileExists("vendor/"+vendor)) {
 
 var vendor = "composer.phar";
 if (!Shell.fileExists("vendor/"+vendor)) {
-	var webLink = "https://getcomposer.org/download/2.8.12/"+vendor;
+	var webLink = "https://getcomposer.org/download/2.10.0/"+vendor;
 	var cmd = "curl --insecure --location "+webLink+" --output vendor/"+vendor;
 	Console.writeLn(cmd);
 	exitIf(Shell.system(cmd));

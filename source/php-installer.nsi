@@ -1,5 +1,5 @@
 ;--------------------------------
-; Hypertext Preprocessor Installer
+; PHP Installer
 ;
 ; Created by Grigore Stefan <g_stefan@yahoo.com>
 ; Public domain (Unlicense) <http://unlicense.org>
@@ -11,24 +11,24 @@
 !include "LogicLib.nsh"
 
 ; The name of the installer
-Name "Hypertext Preprocessor"
+Name "PHP"
 
 ; Version
-!define HypertextPreprocessorVersion "$%PRODUCT_VERSION%"
+!define PHPVersion "$%PRODUCT_VERSION%"
 
 ; The file to write
-OutFile "release\hypertext-preprocessor-${HypertextPreprocessorVersion}-installer.exe"
+OutFile "release\xyo-php-${PHPVersion}-installer.exe"
 
 Unicode True
 RequestExecutionLevel admin
 BrandingText "Grigore Stefan [ github.com/g-stefan ]"
 
 ; The default installation directory
-InstallDir "$PROGRAMFILES64\Hypertext-Preprocessor"
+InstallDir "$PROGRAMFILES64\XYO\PHP"
 
 ; Registry key to check for directory (so if you install again, it will 
 ; overwrite the old one automatically)
-InstallDirRegKey HKLM "Software\Hypertext-Preprocessor" "InstallPath"
+InstallDirRegKey HKLM "Software\XYO\PHP" "InstallPath"
 
 ;--------------------------------
 ;Interface Settings
@@ -84,7 +84,7 @@ InstallDirRegKey HKLM "Software\Hypertext-Preprocessor" "InstallPath"
 	; That will have written an uninstaller binary for us.  Now we sign it with your
 	; favorite code signing tool.
  
-	!system 'grigore-stefan.sign "Hypertext Preprocessor" "temp\Uninstall.exe"' = 0
+	!system 'grigore-stefan.sign "PHP" "temp\Uninstall.exe"' = 0
  
 	; Good.  Now we can carry on writing the real installer. 	 
 !endif
@@ -124,23 +124,23 @@ Var _InstallDir
 ;--------------------------------
 ;Installer Sections
 
-Section "Hypertext Preprocessor (required)" MainSection
+Section "PHP (required)" MainSection
 
 	SectionIn RO
 	SetRegView 64
 
 	; Set output path to the installation directory.
 	SetOutPath $INSTDIR
-	WriteRegStr HKLM "Software\Hypertext-Preprocessor" "InstallPath" "$INSTDIR"
+	WriteRegStr HKLM "Software\XYO\PHP" "InstallPath" "$INSTDIR"
 
 	; Write the uninstall keys for Windows
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "DisplayName" "Hypertext Preprocessor"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "Publisher" "Grigore Stefan [ github.com/g-stefan ]"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "DisplayVersion" "${HypertextPreprocessorVersion}"
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "DisplayIcon" '"$INSTDIR\Uninstall.exe"'
-	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "UninstallString" '"$INSTDIR\Uninstall.exe"'
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "NoModify" 1
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "NoRepair" 1
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "DisplayName" "XYO PHP"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "Publisher" "Grigore Stefan [ github.com/g-stefan ]"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "DisplayVersion" "${PHPVersion}"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "DisplayIcon" '"$INSTDIR\Uninstall.exe"'
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "UninstallString" '"$INSTDIR\Uninstall.exe"'
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "NoModify" 1
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "NoRepair" 1
 
 	; Program files
 	File /r "output\*"
@@ -155,7 +155,7 @@ Section "Hypertext Preprocessor (required)" MainSection
 	; Computing EstimatedSize
 	Call GetInstalledSize
 	Pop $0
-	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor" "EstimatedSize" "$0"
+	WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP" "EstimatedSize" "$0"
 
 	; MSVC Redist
 	SetOutPath $INSTDIR
@@ -171,26 +171,27 @@ Section "Hypertext Preprocessor (required)" MainSection
 	; Create ProgramData folder
 	ReadEnvStr $0 "ProgramData"
 	StrCpy $PathProgramData $0
-	
-	CreateDirectory "$PathProgramData\Hypertext-Preprocessor"
-	CreateDirectory "$PathProgramData\HTTPD"
-	CreateDirectory "$PathProgramData\HTTPD\conf"
-	CreateDirectory "$PathProgramData\HTTPD\conf\conf"
 
-	SetOutPath "$PathProgramData\Hypertext-Preprocessor"
-	File "source\hypertext-preprocessor-error.php"
+	CreateDirectory "$PathProgramData\XYO"	
+	CreateDirectory "$PathProgramData\XYO\PHP"
+	CreateDirectory "$PathProgramData\XYO\HTTPD"
+	CreateDirectory "$PathProgramData\XYO\HTTPD\conf"
+	CreateDirectory "$PathProgramData\XYO\HTTPD\conf\conf"
+
+	SetOutPath "$PathProgramData\XYO\PHP"
+	File "source\php-error.php"
 	File "output\cacert.pem"
-	SetOutPath "$PathProgramData\HTTPD\conf\conf"
-	File "source\hypertext-preprocessor.conf"
+	SetOutPath "$PathProgramData\XYO\HTTPD\conf\conf"
+	File "source\php.conf"
 
 	${StrRep} "$_PathProgramData" "$PathProgramData" "\" "/"
 	${StrRep} "$_InstallDir" "$INSTDIR" "\" "/"
-	!insertmacro _ReplaceInFile "$PathProgramData\HTTPD\conf\conf\hypertext-preprocessor.conf" "$$PHP_PATH" "$_InstallDir"
-	!insertmacro _ReplaceInFile "$PathProgramData\HTTPD\conf\conf\hypertext-preprocessor.conf" "$$PHP_INI_PATH" "$_InstallDir"
-	!insertmacro _ReplaceInFile "$PathProgramData\HTTPD\conf\conf\hypertext-preprocessor.conf" "$$PROGRAMDATA" "$_PathProgramData"
-	Delete "$PathProgramData\HTTPD\conf\conf\hypertext-preprocessor.conf.old"
-	!insertmacro _ReplaceInFile "$PathProgramData\Hypertext-Preprocessor\hypertext-preprocessor-error.php" "$$PROGRAMDATA" "$_PathProgramData"
-	Delete "$PathProgramData\Hypertext-Preprocessor\hypertext-preprocessor-error.php.old"
+	!insertmacro _ReplaceInFile "$PathProgramData\XYO\HTTPD\conf\conf\php.conf" "$$PHP_PATH" "$_InstallDir"
+	!insertmacro _ReplaceInFile "$PathProgramData\XYO\HTTPD\conf\conf\php.conf" "$$PHP_INI_PATH" "$_InstallDir"
+	!insertmacro _ReplaceInFile "$PathProgramData\XYO\HTTPD\conf\conf\php.conf" "$$PROGRAMDATA" "$_PathProgramData"
+	Delete "$PathProgramData\XYO\HTTPD\conf\conf\php.conf.old"
+	!insertmacro _ReplaceInFile "$PathProgramData\XYO\PHP\php-error.php" "$$PROGRAMDATA" "$_PathProgramData"
+	Delete "$PathProgramData\XYO\PHP\php-error.php.old"
 
 	; Set to HKLM
 	EnVar::SetHKLM
@@ -209,7 +210,7 @@ SectionEnd
 ;Descriptions
 
 ;Language strings
-LangString DESC_MainSection ${LANG_ENGLISH} "Hypertext Preprocessor"
+LangString DESC_MainSection ${LANG_ENGLISH} "PHP"
 
 ;Assign language strings to sections
 !insertmacro MUI_FUNCTION_DESCRIPTION_BEGIN
@@ -250,16 +251,16 @@ Section "Uninstall"
 	!macroend
  
 	ClearErrors
-	ReadRegStr $INSTDIR HKLM "Software\Hypertext-Preprocessor" "InstallPath"
+	ReadRegStr $INSTDIR HKLM "Software\XYO\PHP" "InstallPath"
 	IfErrors +2
 	StrCmp $INSTDIR "" 0 +2
-		StrCpy $INSTDIR "$PROGRAMFILES64\Hypertext-Preprocessor"
+		StrCpy $INSTDIR "$PROGRAMFILES64\XYO\PHP"
  
 	# Check that the uninstall isn't dangerous.
 	!insertmacro BadPathsCheck
  
-	# Does path end with "\Hypertext-Preprocessor"?
-	!define CHECK_PATH "\Hypertext-Preprocessor"
+	# Does path end with "\PHP"?
+	!define CHECK_PATH "\PHP"
 	StrLen $R1 "${CHECK_PATH}"
 	StrCpy $R0 $INSTDIR "" -$R1
 	StrCmp $R0 "${CHECK_PATH}" +3
@@ -277,8 +278,8 @@ Section "Uninstall"
 	SetOutPath $TEMP
 
 	; Remove registry keys
-	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Hypertext-Preprocessor"
-	DeleteRegKey HKLM "Software\Hypertext-Preprocessor"
+	DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\XYO-PHP"
+	DeleteRegKey HKLM "Software\XYO\PHP"
 
 	; Remove files and uninstaller
 	RMDir /r "$INSTDIR"
@@ -287,8 +288,8 @@ Section "Uninstall"
 	ReadEnvStr $0 "ProgramData"
 	StrCpy $PathProgramData $0
 	
-	RMDir /r "$PathProgramData\Hypertext-Preprocessor"
-	Delete "$PathProgramData\HTTPD\conf\conf\hypertext-preprocessor.conf"
+	RMDir /r "$PathProgramData\XYO\PHP"
+	Delete "$PathProgramData\XYO\HTTPD\conf\conf\php.conf"
 
 	; Set to HKLM
 	EnVar::SetHKLM

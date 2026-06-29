@@ -1,18 +1,19 @@
 {
 	"solution": {
-		"name" : "installer-hypertext-preprocessor",
+		"name" : "installer-php",
 		"type" : "xyo-cpp",
 		"projects": [
 			{
-				"name" : "installer-hypertext-preprocessor",
+				"name" : "installer-php",
 				"SPDX-License-Identifier": "MIT",
-				"version" : "8.4.13",
+				"version" : "8.5.7",
 				"noVersion" : true
 			}
 		],
 		"sourceLinks" : {
-			"php-8.4.13-Win32-vs17-x64.zip" : "https://windows.php.net/download",
-			"php_mailparse-3.1.9-8.4-ts-vs17-x64.zip" : "https://pecl.php.net/package/mailparse/3.1.9/windows",
+			"php-8.5.7-Win32-vs17-x64.zip" : "https://windows.php.net/download",
+			"php_imap-1.0.3-8.5-ts-vs17-x64.zip" : "https://downloads.php.net/~windows/pecl/releases/imap/1.0.3",
+			"php_mailparse-3.2.0-8.5-ts-vs17-x64.zip" : "https://pecl.php.net/package/mailparse/3.2.0/windows",
 			"composer.phar" : "https://getcomposer.org/download/",
 			"cacert.pem" : "https://curl.haxx.se/docs/caextract.html"
 		}

@@ -8,15 +8,15 @@ messageAction("installer");
 Shell.mkdirRecursivelyIfNotExists("release");
 Shell.mkdirRecursivelyIfNotExists("temp");
 
-Shell.setenv("PRODUCT_NAME", "installer-hypertext-preprocessor");
+Shell.setenv("PRODUCT_NAME", "installer-php");
 Shell.setenv("PRODUCT_VERSION", Project.version);
-Shell.setenv("PRODUCT_BASE", "hypertext-preprocessor");
+Shell.setenv("PRODUCT_BASE", "php");
 
-exitIf(Shell.system("makensis.exe /NOCD \"source\\hypertext-preprocessor-installer.nsi\""));
-exitIf(Shell.system("grigore-stefan.sign \"Hypertext Preprocessor\" \"release\\hypertext-preprocessor-" + Project.version + "-installer.exe\""));
+exitIf(Shell.system("makensis.exe /NOCD \"source\\php-installer.nsi\""));
+exitIf(Shell.system("grigore-stefan.sign \"PHP\" \"release\\xyo-php-" + Project.version + "-installer.exe\""));
 
-var fileName = "hypertext-preprocessor-" + Project.version + "-installer.exe";
-var jsonName = "hypertext-preprocessor-" + Project.version + "-installer.json";
+var fileName = "xyo-php-" + Project.version + "-installer.exe";
+var jsonName = "xyo-php-" + Project.version + "-installer.json";
 
 var json = {};
 json[fileName] = SHA512.fileHash("release/" + fileName);

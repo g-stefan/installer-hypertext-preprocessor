@@ -21,7 +21,9 @@ Shell.system("7z x \"vendor/php-"+Project.version+"-Win32-vs17-x64.zip\" -aoa -o
 Shell.rename("temp","output");
 
 Shell.mkdirRecursivelyIfNotExists("temp");
-Shell.system("7z x \"vendor/php_mailparse-3.1.9-8.4-ts-vs17-x64.zip\" -aoa -otemp");
+Shell.system("7z x \"vendor/php_imap-1.0.3-8.5-ts-vs17-x64.zip\" -aoa -otemp");
+Shell.rename("temp/php_imap.dll","output/ext/php_imap.dll");
+Shell.system("7z x \"vendor/php_mailparse-3.2.0-8.5-ts-vs17-x64.zip\" -aoa -otemp");
 Shell.rename("temp/php_mailparse.dll","output/ext/php_mailparse.dll");
 Shell.removeDirRecursivelyForce("temp");
 

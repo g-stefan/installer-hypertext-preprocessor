@@ -1,5 +1,5 @@
-# installer-hypertext-preprocessor
-Hypertext Preprocessor Installer
+# installer-php
+PHP Installer
 
 This is a custom installer for [PHP](https://windows.php.net/download)
 

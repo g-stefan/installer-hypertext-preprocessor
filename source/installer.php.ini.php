@@ -15,7 +15,7 @@ $search.=";error_log = syslog\r\n\r\n";
 
 $replace="; Log errors to syslog (Event Log on Windows).\r\n";
 $replace.=";error_log = syslog\r\n";
-$replace.="error_log = \"C:\\ProgramData\\Hypertext-Preprocessor\\error.log\"\r\n";
+$replace.="error_log = \"C:\\ProgramData\\XYO\\PHP\\error.log\"\r\n";
 $replace.="\r\n";
 
 $config=str_replace ($search, $replace, $config);
@@ -28,7 +28,7 @@ $search.=";curl.cainfo =\r\n\r\n";
 
 $replace="; A default value for the CURLOPT_CAINFO option. This is required to be an\r\n";
 $replace.="; absolute path.\r\n";
-$replace.="curl.cainfo =\"C:\\ProgramData\\Hypertext-Preprocessor\\cacert.pem\"\r\n\r\n";
+$replace.="curl.cainfo =\"C:\\ProgramData\\XYO\\PHP\\cacert.pem\"\r\n\r\n";
 
 $config=str_replace ($search, $replace, $config);
 
@@ -62,7 +62,6 @@ $config=str_replace (";extension=fileinfo\r\n","extension=fileinfo\r\n", $config
 $config=str_replace (";extension=gd\r\n","extension=gd\r\n", $config);
 $config=str_replace (";extension=gmp\r\n","extension=gmp\r\n", $config);
 $config=str_replace (";extension=intl\r\n","extension=intl\r\n", $config);
-$config=str_replace (";extension=imap\r\n","extension=imap\r\n", $config);
 $config=str_replace (";extension=mbstring\r\n","extension=mbstring\r\n", $config);
 $config=str_replace (";extension=exif","extension=exif", $config);
 $config=str_replace (";extension=mysqli\r\n","extension=mysqli\r\n", $config);
@@ -76,7 +75,7 @@ $config=str_replace (";extension=sqlite3\r\n","extension=sqlite3\r\n", $config);
 $config=str_replace (";extension=xmlrpc\r\n","extension=xmlrpc\r\n", $config);
 $config=str_replace (";extension=xsl\r\n","extension=xsl\r\n", $config);
 //
-$config=str_replace ("extension=xsl\r\n","extension=xsl\r\nextension=mailparse\r\n", $config);
+$config=str_replace ("extension=xsl\r\n","extension=xsl\r\nextension=imap\r\nextension=mailparse\r\n", $config);
 
 //--
 
