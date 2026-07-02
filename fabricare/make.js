@@ -30,7 +30,7 @@ Shell.removeDirRecursivelyForce("temp");
 Shell.copyFile("vendor/cacert.pem","output/cacert.pem");
 Shell.copyFile("vendor/composer.phar","output/composer.phar");
 Shell.copyFile("source/installer.php.ini.php","output/installer.php.ini.php");
-Shell.copyFile("source/composer.phar.cmd","output/composer.phar.cmd");
+Shell.copyFile("source/composer.cmd","output/composer.cmd");
 
 Shell.removeDirRecursivelyForce("output/dev");
 
